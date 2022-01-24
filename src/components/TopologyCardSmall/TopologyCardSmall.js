@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cx from "clsx";
-import { Icon } from "../Icon";
 import { getTopologyCardStatusBorderTopColor } from "../../utils/getTopologyCardStatusBorderTopColor";
 import { BottomMetrics } from "./components/BottomMetrics";
 import { TopologyDropdownMenu } from "../TopologyDropdownMenu/TopologyDropdownMenu";
+import { IconButton } from "../IconButton/IconButton";
 
 export const TopologyCardSmall = ({
   name,
@@ -53,9 +53,11 @@ export const TopologyCardSmall = ({
             <TopologyDropdownMenu
               className="flex flex-initial"
               renderButton={() => (
-                <div className="flex-initial text-1 p-1.5 min-w-7">
-                  <Icon name="dots-triple" className="" />
-                </div>
+                <IconButton
+                  icon="dots"
+                  className="flex-initial text-1 "
+                  variant="gray"
+                />
               )}
               items={[
                 { title: "Duplicate" },

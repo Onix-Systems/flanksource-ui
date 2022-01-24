@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cx from "clsx";
-import { Icon } from "../Icon";
 import { NodeSpecification } from "../NodeSpecification/NodeSpecification";
 import { NodeStats } from "../NodeStats/NodeStats";
 import { databases, namespaces, nodes, pods } from "../../data/topologyDatas";
 import { getTopologyCardStatusBorderTopColor } from "../../utils/getTopologyCardStatusBorderTopColor";
 import { SubHeaderMetrics } from "./components/SubHeaderMetrics";
 import { TopologyDropdownMenu } from "../TopologyDropdownMenu/TopologyDropdownMenu";
+import { IconButton } from "../IconButton/IconButton";
 
 export const TopologyCardLarge = ({
   name,
@@ -62,11 +62,7 @@ export const TopologyCardLarge = ({
           ) : (
             <TopologyDropdownMenu
               className="flex flex-initial"
-              renderButton={() => (
-                <div className="p-1.5 min-w-7">
-                  <Icon name="dots-triple" className="" />
-                </div>
-              )}
+              renderButton={() => <IconButton icon="dots" variant="yellow" />}
               items={[
                 { title: "Duplicate" },
                 { title: "Share" },

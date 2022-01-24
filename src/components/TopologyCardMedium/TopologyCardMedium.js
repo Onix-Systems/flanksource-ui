@@ -69,9 +69,7 @@ export const TopologyCardMedium = ({
           ) : (
             <TopologyDropdownMenu
               className="flex flex-initial"
-              renderButton={() => (
-                <IconButton icon="dots-triple" className="p-1.5 min-w-7" />
-              )}
+              renderButton={() => <IconButton icon="dots" variant="gray" />}
               items={[
                 { title: "Duplicate" },
                 { title: "Share" },
