@@ -48,6 +48,7 @@ export const TopologyPageSmallView = ({
                 onSelectionChange={(event) => {
                   toggleChecked(`column_1_card_${index}`, event.target.checked);
                 }}
+                label={`column_1_card_${index}`}
               />
             ))}
           />
@@ -67,6 +68,7 @@ export const TopologyPageSmallView = ({
                 onSelectionChange={(event) => {
                   toggleChecked(`column_2_card_${index}`, event.target.checked);
                 }}
+                label={`column_2_card_${index}`}
               />
             ))}
           />
@@ -86,6 +88,7 @@ export const TopologyPageSmallView = ({
                 onSelectionChange={(event) => {
                   toggleChecked(`column_3_card_${index}`, event.target.checked);
                 }}
+                label={`column_3_card_${index}`}
               />
             ))}
           />
@@ -105,6 +108,7 @@ export const TopologyPageSmallView = ({
                 onSelectionChange={(event) => {
                   toggleChecked(`column_4_card_${index}`, event.target.checked);
                 }}
+                label={`column_4_card_${index}`}
               />
             ))}
           />
@@ -124,6 +128,7 @@ export const TopologyPageSmallView = ({
                 onSelectionChange={(event) => {
                   toggleChecked(`column_5_card_${index}`, event.target.checked);
                 }}
+                label={`column_5_card_${index}`}
               />
             ))}
           />
