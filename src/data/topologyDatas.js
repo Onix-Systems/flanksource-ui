@@ -82,3 +82,23 @@ export const properties = [
   { name: "name", text: "prod-cluster" },
   { name: "account", text: "2h ago" }
 ];
+export const textData = [
+  {
+    text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dolor
+      enim possimus soluta. Beatae officiis omnis rem rerum. Amet excepturi
+      fugiat itaque iure, nemo nisi nobis officia quis tenetur totam.`,
+    id: 1
+  },
+  {
+    text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dolor
+      enim possimus soluta. Beatae officiis omnis rem rerum. Amet excepturi
+      fugiat itaque iure, nemo nisi nobis officia quis tenetur totam.`,
+    id: 2
+  },
+  {
+    text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dolor
+      enim possimus soluta. Beatae officiis omnis rem rerum. Amet excepturi
+      fugiat itaque iure, nemo nisi nobis officia quis tenetur totam.`,
+    id: 3
+  }
+];
