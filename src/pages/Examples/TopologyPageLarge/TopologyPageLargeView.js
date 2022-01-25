@@ -20,8 +20,8 @@ export const TopologyPageLargeView = ({
           type="checkbox"
           className="h-4 w-4 text-dark-blue rounded-4px"
           checked={selectionMode}
-          onChange={(event) => {
-            setSelectionMode(event.target.checked);
+          onChange={(state) => {
+            setSelectionMode(state);
           }}
         />
         <label className="form-check-label inline-block ml-4" htmlFor="ch1">
@@ -44,8 +44,8 @@ export const TopologyPageLargeView = ({
                 name="Pet Service"
                 selectionMode={selectionMode}
                 selected={!!checked[`column_1_card_${index}`]}
-                onSelectionChange={(event) => {
-                  toggleChecked(`column_1_card_${index}`, event.target.checked);
+                onSelectionChange={(state) => {
+                  toggleChecked(`column_1_card_${index}`, state);
                 }}
                 onSelectionHandler={() => {}}
               />
@@ -64,8 +64,8 @@ export const TopologyPageLargeView = ({
                 name="Pet Service"
                 selectionMode={selectionMode}
                 selected={!!checked[`column_2_card_${index}`]}
-                onSelectionChange={(event) => {
-                  toggleChecked(`column_2_card_${index}`, event.target.checked);
+                onSelectionChange={(state) => {
+                  toggleChecked(`column_2_card_${index}`, state);
                 }}
                 onSelectionHandler={() => {}}
               />
