@@ -6,6 +6,7 @@ import { TopologyPageLarge } from "./pages/Examples/TopologyPageLarge/TopologyPa
 import { HeirarchyTestPageOld } from "./pages/Examples/heirarchyTestOld";
 import { IncidentDetailsPage } from "./pages/TopologyViewer/Incident/IncidentDetails";
 import { IncidentListPage } from "./pages/TopologyViewer/Incident/IncidentList";
+import { TopologyPageModal } from "./pages/Examples/TopologyPageModal/TopologyPageModal";
 
 export const routes = {
   examples: {
@@ -31,6 +32,12 @@ export const routes = {
     exact: true,
     path: `/topology-large`,
     component: <TopologyPageLarge />
+  },
+  modalTopology: {
+    name: "ModalTopology",
+    exact: true,
+    path: `/modal-topology`,
+    component: <TopologyPageModal />
   },
   canary: {
     name: "Canary",

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 import { TopologyColumn, TopologyCard } from "../../../components/Topology";
 import { TopologySelectorModal } from "../../../components/TopologySelectorModal/TopologySelectorModal";
-import { textData } from "../../../data/topologyDatas";
 
 export const TopologyPageSmallView = ({
   topology,
@@ -12,7 +11,9 @@ export const TopologyPageSmallView = ({
   setSelectionMode,
   toggleChecked,
   modal,
-  setModal
+  setModal,
+  topologies,
+  setSendData
 }) => (
   <div className="font-inter flex leading-1.21rel">
     <div className="flex-auto">
@@ -135,151 +136,17 @@ export const TopologyPageSmallView = ({
     <TopologySelectorModal
       handleModalClose={() => setModal(false)}
       isOpen={modal}
-      renderTitle={() => (
-        <h1 className="text-2xl font-semibold mb mb-6">Add Card</h1>
-      )}
-      textData={textData}
-      renderParagraph={() => (
-        <div>
-          {textData.map(({ text, id }) => (
-            <p className="text-sm" key={id}>
-              {text}
-            </p>
-          ))}
-        </div>
-      )}
+      topologies={topologies}
+      title="Add Card"
+      titleStyle="text-2xl font-semibold mb mb-6"
       footerStyle="flex justify-end mt-7 align-baseline"
-      footerText={() => (
-        <p className="text-base font-medium mt-3">{`${
-          Object.values(checked).filter((item) => item === true).length
-        } cards selected`}</p>
-      )}
-      footerButton={() => (
-        <button
-          type="button"
-          className="py-3 px-6 bg-dark-blue rounded-6px text-white ml-6"
-          onClick={() => {}}
-        >
-          Add
-        </button>
-      )}
-      renderCards={() => (
-        <div
-          className="grid gap-4"
-          style={{ gridTemplateColumns: "repeat(5, 224px)" }}
-        >
-          <div>
-            <TopologyColumn
-              title="zone 1"
-              cards={topology.map(({ name, status, properties }, index) => (
-                <TopologyCard
-                  size="small"
-                  key={name}
-                  name={name}
-                  status={status}
-                  properties={properties}
-                  selectionMode
-                  selected={!!checked[`column_1_card_${index}`]}
-                  onSelectionChange={(event) => {
-                    toggleChecked(
-                      `column_1_card_${index}`,
-                      event.target.checked
-                    );
-                  }}
-                />
-              ))}
-            />
-          </div>
-          <div>
-            <TopologyColumn
-              title="zone 2"
-              cards={topology.map(({ name, status, properties }, index) => (
-                <TopologyCard
-                  size="small"
-                  key={name}
-                  name={name}
-                  status={status}
-                  properties={properties}
-                  selectionMode
-                  selected={!!checked[`column_2_card_${index}`]}
-                  onSelectionChange={(event) => {
-                    toggleChecked(
-                      `column_2_card_${index}`,
-                      event.target.checked
-                    );
-                  }}
-                />
-              ))}
-            />
-          </div>
-          <div>
-            <TopologyColumn
-              title="zone 3"
-              cards={topology.map(({ name, status, properties }, index) => (
-                <TopologyCard
-                  size="small"
-                  key={name}
-                  name={name}
-                  status={status}
-                  properties={properties}
-                  selectionMode
-                  selected={!!checked[`column_3_card_${index}`]}
-                  onSelectionChange={(event) => {
-                    toggleChecked(
-                      `column_3_card_${index}`,
-                      event.target.checked
-                    );
-                  }}
-                />
-              ))}
-            />
-          </div>
-          <div>
-            <TopologyColumn
-              title="zone 4"
-              cards={topology.map(({ name, status, properties }, index) => (
-                <TopologyCard
-                  size="small"
-                  key={name}
-                  name={name}
-                  status={status}
-                  properties={properties}
-                  selectionMode
-                  selected={!!checked[`column_4_card_${index}`]}
-                  onSelectionChange={(event) => {
-                    toggleChecked(
-                      `column_4_card_${index}`,
-                      event.target.checked
-                    );
-                  }}
-                />
-              ))}
-            />
-          </div>
-          <div>
-            <TopologyColumn
-              title="zone 5"
-              cards={topology.map(({ name, status, properties }, index) => (
-                <TopologyCard
-                  size="small"
-                  key={name}
-                  name={name}
-                  status={status}
-                  properties={properties}
-                  selectionMode
-                  selected={!!checked[`column_5_card_${index}`]}
-                  onSelectionChange={(event) => {
-                    toggleChecked(
-                      `column_5_card_${index}`,
-                      event.target.checked
-                    );
-                  }}
-                />
-              ))}
-            />
-          </div>
-        </div>
-      )}
+      footerText="cards selected"
+      footerTextStyle="text-base font-medium mt-3"
+      buttonStyle="py-3 px-6 bg-dark-blue rounded-6px text-white ml-6 hover:bg-warm-blue"
+      buttonTitle="Add"
+      setSendData={(data) => {
+        setSendData(data);
+      }}
     />
   </div>
 );
