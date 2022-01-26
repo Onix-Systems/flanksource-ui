@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import PropTypes from "prop-types";
-import { TopologyCard, TopologyColumn } from "../Topology";
+import { TopologyCard } from "../Topology";
 import { Modal } from "../Modal";
 
 export const TopologySelectorModal = ({
@@ -18,13 +18,12 @@ export const TopologySelectorModal = ({
   setSendData
 }) => {
   const [checked, setChecked] = useState({
-    column_0_card_0: true,
-    column_1_card_0: true
+    column_1_card_1: true,
+    column_2_card_1: true
   });
   const toggleChecked = (id, checked) => {
     setChecked((prevState) => ({ ...prevState, [id]: checked }));
   };
-  console.log(topologies);
   return (
     <Modal
       open={isOpen}
@@ -42,28 +41,25 @@ export const TopologySelectorModal = ({
         style={{ gridTemplateColumns: "repeat(5, 224px)" }}
       >
         {topologies.map((topology, indexTopologies) => (
-          <TopologyColumn
-            key={uuid()}
-            title={`Zone ${indexTopologies + 1}`}
-            cards={topology.map(({ name, status, properties }, index) => (
+          <div key={uuid()} className="p-3">
+            {topology.map((item, index) => (
               <TopologyCard
                 size="small"
-                topology={topology}
-                key={name}
-                name={name}
-                status={status}
-                properties={properties}
+                topology={item}
+                key={uuid()}
                 selectionMode
-                selected={!!checked[`column_${indexTopologies}_card_${index}`]}
-                onSelectionChange={(event) => {
+                selected={
+                  !!checked[`column_${indexTopologies + 1}_card_${index + 1}`]
+                }
+                onSelectionChange={(state) => {
                   toggleChecked(
-                    `column_${indexTopologies}_card_${index}`,
-                    event.target.checked
+                    `column_${indexTopologies + 1}_card_${index + 1}`,
+                    state
                   );
                 }}
               />
             ))}
-          />
+          </div>
         ))}
       </div>
       <div className={footerStyle}>
