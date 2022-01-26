@@ -60,7 +60,7 @@ export const HealthSummary = ({ component, iconSize }) => {
 
 HealthSummary.propTypes = {
   iconSize: PropTypes.string,
-  component: PropTypes.isRequired
+  component: PropTypes.shape({}).isRequired
 };
 
 HealthSummary.defaultProps = {

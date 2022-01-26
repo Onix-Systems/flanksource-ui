@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TopologySelectorModal } from "../../../components/TopologySelectorModal/TopologySelectorModal";
 
-export const TopologyPageModalView = ({
+export const TopologySelectorModalPageView = ({
   modal,
   setModal,
   topologies,
@@ -23,20 +23,16 @@ export const TopologyPageModalView = ({
       isOpen={modal}
       topologies={topologies}
       title="Add Card"
-      titleStyle="text-2xl font-semibold mb mb-6"
-      footerStyle="flex justify-end mt-7 align-baseline"
-      footerText="cards selected"
-      footerTextStyle="text-base font-medium mt-3"
-      buttonStyle="py-3 px-6 bg-dark-blue rounded-6px text-white ml-6 hover:bg-warm-blue"
       buttonTitle="Add"
-      setSendData={(data) => {
+      onAddClick={(data) => {
         setSendData(data);
       }}
+      defaultChecked={[topologies[0][0].id]}
     />
   </div>
 );
 
-TopologyPageModalView.propTypes = {
+TopologySelectorModalPageView.propTypes = {
   modal: PropTypes.bool.isRequired,
   setModal: PropTypes.func.isRequired,
   setSendData: PropTypes.func.isRequired

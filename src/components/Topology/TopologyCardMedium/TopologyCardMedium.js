@@ -1,18 +1,11 @@
 import React from "react";
 import cx from "clsx";
-import clsx from "clsx";
 import { DotsVerticalIcon } from "@heroicons/react/outline";
 import { Icon } from "../../Icon";
 import { Property } from "../Property";
-import { HealthSummary } from "../../HealthSummary/summary";
+import { HealthSummary } from "../../HealthSummary";
 import { SubHeaderMetrics } from "./components/SubHeaderMetrics";
 import { TopologyDropdownMenu } from "../TopologyDropdownMenu/TopologyDropdownMenu";
-import {
-  databases,
-  namespaces,
-  nodes,
-  pods
-} from "../../../data/topologyDatas";
 import { topologyCardCommonPropTypes } from "../prop-types";
 
 export function TopologyCardMedium({

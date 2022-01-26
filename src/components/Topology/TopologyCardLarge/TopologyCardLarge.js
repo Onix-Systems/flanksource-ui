@@ -2,12 +2,6 @@ import React from "react";
 import cx from "clsx";
 import { DotsVerticalIcon } from "@heroicons/react/outline";
 import { Property } from "../Property";
-import {
-  databases,
-  namespaces,
-  nodes,
-  pods
-} from "../../../data/topologyDatas";
 import { SubHeaderMetrics } from "./components/SubHeaderMetrics";
 import { TopologyDropdownMenu } from "../TopologyDropdownMenu/TopologyDropdownMenu";
 import { HealthSummary } from "../../HealthSummary";
