@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { TopologySelectorModalPageView } from "./TopologySelectorModalPageView";
-import { topologies } from "../../../data/topologies";
+import { topologiesFactory } from "../../../data/topologies";
 
-const topology = topologies();
+const topologies = topologiesFactory(5, 4);
+
 export const TopologySelectorModalPage = () => {
   const [modal, setModal] = useState(false);
-  const [sendData, setSendData] = useState({});
+
   return (
     <TopologySelectorModalPageView
       modal={modal}
       setModal={setModal}
-      topologies={topology}
-      setSendData={setSendData}
+      topologies={topologies}
     />
   );
 };

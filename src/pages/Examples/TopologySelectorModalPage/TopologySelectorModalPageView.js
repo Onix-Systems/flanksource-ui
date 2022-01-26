@@ -5,8 +5,7 @@ import { TopologySelectorModal } from "../../../components/TopologySelectorModal
 export const TopologySelectorModalPageView = ({
   modal,
   setModal,
-  topologies,
-  setSendData
+  topologies
 }) => (
   <div>
     <button
@@ -23,9 +22,9 @@ export const TopologySelectorModalPageView = ({
       isOpen={modal}
       topologies={topologies}
       title="Add Card"
-      buttonTitle="Add"
-      onAddClick={(data) => {
-        setSendData(data);
+      submitButtonTitle="Add"
+      onSubmit={(data) => {
+        console.log("array of checked cards ids:", data);
       }}
       defaultChecked={[topologies[0][0].id]}
     />
@@ -35,5 +34,6 @@ export const TopologySelectorModalPageView = ({
 TopologySelectorModalPageView.propTypes = {
   modal: PropTypes.bool.isRequired,
   setModal: PropTypes.func.isRequired,
-  setSendData: PropTypes.func.isRequired
+  // eslint-disable-next-line react/forbid-prop-types
+  topologies: PropTypes.array.isRequired
 };

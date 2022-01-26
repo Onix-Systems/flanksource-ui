@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { v4 as uuid } from "uuid";
 import cx from "clsx";
 import { TopologyCard } from "../Topology";
 import { Modal } from "../Modal";
+import { usePrevious } from "../../utils/hooks";
 
 export const TopologySelectorModal = ({
   handleModalClose,
@@ -13,13 +13,22 @@ export const TopologySelectorModal = ({
   title,
   titleClassName,
   footerTextClassName,
-  buttonClassName,
-  buttonTitle,
-  onAddClick,
+  submitButtonClassName,
+  submitButtonTitle,
+  onSubmit,
   hideCounter,
   defaultChecked
 }) => {
   const [checked, setChecked] = useState(defaultChecked);
+
+  const previousIsOpen = usePrevious(isOpen);
+
+  useEffect(() => {
+    if (isOpen && previousIsOpen !== isOpen && defaultChecked) {
+      setChecked(defaultChecked);
+    }
+  }, [defaultChecked, isOpen, previousIsOpen]);
+
   const toggleChecked = (id, checked) => {
     setChecked((prevState) =>
       checked ? prevState.concat([id]) : prevState.filter((i) => i !== id)
@@ -41,10 +50,11 @@ export const TopologySelectorModal = ({
       </h1>
       <div
         className="grid gap-4 w-full px-0.5 overflow-x-auto"
-        style={{ gridTemplateColumns: "repeat(5, minmax(198px, 1fr))" }}
+        style={{ gridTemplateColumns: "repeat(5, minmax(12.375rem, 1fr))" }}
       >
-        {topologies.map((topology) => (
-          <div key={uuid()} className="">
+        {topologies.map((topology, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={index}>
             {topology.map((item) => (
               <TopologyCard
                 size="small"
@@ -64,24 +74,20 @@ export const TopologySelectorModal = ({
         className={cx("flex justify-end mt-7 align-baseline", footerClassName)}
       >
         {!hideCounter && (
-          <p
-            className={cx(
-              "flex justify-end mt-7 align-baseline",
-              footerTextClassName
-            )}
-          >
-            {`${checked.length} cards selected`}
+          <p className={cx("flex items-center", footerTextClassName)}>
+            <span>{`${checked.length} cards selected`}</span>
           </p>
         )}
         <button
           type="button"
           className={cx(
             "py-3 px-6 bg-dark-blue rounded-6px text-white ml-6 hover:bg-warm-blue",
-            buttonClassName
+            submitButtonClassName
           )}
-          onClick={() => onAddClick(checked)}
+          onClick={() => onSubmit(checked)}
+          disabled={checked.length === 0}
         >
-          {buttonTitle}
+          {submitButtonTitle}
         </button>
       </div>
     </Modal>
@@ -95,14 +101,14 @@ TopologySelectorModal.propTypes = {
   title: PropTypes.string.isRequired,
   titleClassName: PropTypes.string,
   footerTextClassName: PropTypes.string,
-  buttonClassName: PropTypes.string,
-  buttonTitle: PropTypes.string.isRequired,
-  onAddClick: PropTypes.func.isRequired
+  submitButtonClassName: PropTypes.string,
+  submitButtonTitle: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 TopologySelectorModal.defaultProps = {
   hideCounter: false,
   footerTextClassName: "",
-  buttonClassName: "",
+  submitButtonClassName: "",
   titleClassName: "",
   footerClassName: ""
 };
