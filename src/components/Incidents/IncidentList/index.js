@@ -54,11 +54,11 @@ function IncidentItem({ incident, ...rest }) {
           <button
             className={cx(
               "text-gray-800 text-xs leading-4 font-medium py-0.5 px-2.5 rounded-10px",
-              status === "Open" ? "bg-light-green" : "bg-gray-100"
+              status === "open" ? "bg-light-green" : "bg-gray-100"
             )}
             type="button"
           >
-            {status === "Open" ? "Active" : "Resolved"}
+            {status === "open" ? "Active" : "Resolved"}
           </button>
         </div>
         <div className="text-gray-400 text-sm">{getAge()}</div>
