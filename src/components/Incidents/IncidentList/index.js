@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import cx from "clsx";
 import dayjs from "dayjs";
 import { v4 as uuid } from "uuid";
-import { BsChevronDoubleDown, BsChevronDoubleUp } from "react-icons/all";
+import {
+  BiNoEntry,
+  BsChevronDoubleDown,
+  BsChevronDoubleUp,
+  CgMathEqual
+} from "react-icons/all";
 import responders from "../../../data/responders.json";
 
 const IncidentStatus = {
@@ -15,10 +20,24 @@ const IncidentStatusLabel = {
   [IncidentStatus.Open]: "Open",
   [IncidentStatus.Closed]: "Closed"
 };
+const IncidentSeverity = {
+  Low: 0,
+  Normal: 1,
+  High: 2,
+  Blocker: 3
+};
+const IncidentSeverityIcon = {
+  [IncidentSeverity.Low]: <BsChevronDoubleDown color="#EB391E" />,
+  [IncidentSeverity.Normal]: <CgMathEqual color="#FFA90B" />,
+  [IncidentSeverity.High]: <BsChevronDoubleUp color="#326CE5" />,
+  [IncidentSeverity.Blocker]: <BiNoEntry color="#EC1C24" />
+};
 
-const severityData = {
-  low: { icon: <BsChevronDoubleDown color="#EB391E" />, text: "Low" },
-  high: { icon: <BsChevronDoubleUp color="#EB391E" />, text: "High" }
+const IncidentSeverityLabel = {
+  [IncidentSeverity.Low]: "Low",
+  [IncidentSeverity.Normal]: "Normal",
+  [IncidentSeverity.High]: "High",
+  [IncidentSeverity.Blocker]: "Blocker"
 };
 export function IncidentList({ list, ...rest }) {
   return (
@@ -71,22 +90,18 @@ function IncidentItem({ incident }) {
     navigate(`/incidents/${id}`);
   };
 
-  const severityInfo = useMemo(() => {
-    switch (severity) {
-      case 0:
-        return severityData.low;
-      case 1:
-        return severityData.high;
-      default:
-        return severityData.low;
-    }
-  }, [severity]);
-
   const statusLabel = useMemo(
     () => IncidentStatusLabel[status] ?? status,
     [status]
   );
-
+  const severityLabel = useMemo(
+    () => IncidentSeverityLabel[severity] ?? severity,
+    [severity]
+  );
+  const severityIcon = useMemo(
+    () => IncidentSeverityIcon[severity] ?? severity,
+    [severity]
+  );
   const statusColorClass = cx({
     "bg-light-green": status === IncidentStatus.Open,
     "bg-gray-100": status === IncidentStatus.Closed
@@ -105,9 +120,9 @@ function IncidentItem({ incident }) {
       </td>
       <td className="px-3 py-3">
         <div className="flex flex-row items-center">
-          {severityInfo.icon}
+          {severityIcon}
           <p className="text-darker-black text-sm leading-5 font-normal ml-2.5">
-            {severityInfo.text}
+            {severityLabel}
           </p>
         </div>
       </td>

@@ -38,7 +38,7 @@ export function IncidentListPage() {
             Create New Incident
           </button>
           <div className="flex">
-            <h1 className="text-sm font-inter mr-3.5">Show as table</h1>
+            <p className="text-sm font-inter mr-3.5">Show as table</p>
             <Switch
               checked={enabled}
               onChange={setEnabled}
