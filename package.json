@@ -23,6 +23,7 @@
     "dayjs": "^1.10.7",
     "dompurify": "^2.3.4",
     "history": "^5.0.1",
+    "http-proxy-middleware": "^2.0.2",
     "jsdom": "^16.7.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
