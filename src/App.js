@@ -19,6 +19,7 @@ import {
   CanaryPage,
   TopologyPage
 } from "./pages";
+import { RsDemoPage } from "./pages/Examples/rs-demo";
 
 const navigation = [
   {
@@ -99,6 +100,7 @@ export function App() {
               path="topology"
               element={<TopologyPage url="/canary/api" />}
             />
+            <Route path="rs" element={<RsDemoPage />} />
           </Route>
 
           <Route path="logs" element={sidebar}>
