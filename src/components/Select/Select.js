@@ -174,8 +174,6 @@ Select.propTypes = {
   // eslint-disable-next-line react/require-default-props
   options: PropTypes.arrayOf(PropTypes.any),
   // eslint-disable-next-line react/forbid-prop-types,react/require-default-props
-  value: PropTypes.any,
-  onChange: PropTypes.func,
   allowSelectAll: PropTypes.bool,
   allOption: PropTypes.shape({
     label: PropTypes.string,
