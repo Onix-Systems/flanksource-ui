@@ -1,3 +1,3 @@
-import { Select } from "./Select";
+import { Select, components } from "./Select";
 
-export { Select };
+export { Select, components };

@@ -1,7 +1,7 @@
 import React from "react";
 import { HiCheck } from "react-icons/hi";
 import { useForm } from "react-hook-form";
-import { components, Select } from "../../components/Select/Select";
+import { components, Select } from "../../components/Select";
 import { SearchLayout } from "../../components/Layout";
 
 const options = [
