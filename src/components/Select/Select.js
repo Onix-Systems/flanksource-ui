@@ -95,7 +95,6 @@ const selectAllOptionFeatureDecorator = (originalProps) => {
 
 const selectColourStyles = {
   control: (styles, { isFocused }) => {
-
     return {
       ...styles,
       minHeight: "42px",
@@ -142,32 +141,48 @@ const selectColourStyles = {
     ...styles,
     fontSize: "16px",
     lineHeight: "24px"
+  }),
+  input: (styles) => ({
+    ...styles,
+    "& input:focus": {
+      boxShadow: "none"
+    }
   })
 };
 
-export const Select = ({ name, control, ...props }) => {
-  return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field: { onChange, value, ref, name } }) => {
-        const composedProps = {
-          ...props,
-          inputRef: ref,
-          name,
-          value: props.isMulti
-            ? props.options.filter((o) => value?.includes(o.value))
-            : props.options.find((o) => o.value === value),
-          onChange: props.isMulti
-            ? (value) => onChange(value.map((i) => i.value))
-            : (value) => onChange(value?.value),
-          styles: { ...selectColourStyles, ...(props.styles || {}) }
-        };
-        const selectAllProps = selectAllOptionFeatureDecorator(composedProps);
-        return <ReactSelect {...composedProps} {...selectAllProps} />;
-      }}
-    />
-  );
+export const Select = (props) => {
+  const { name, control, styles } = props;
+  if (control) {
+    return (
+      <Controller
+        control={control}
+        name={name}
+        render={({ field: { onChange, value, ref, name } }) => {
+          const composedProps = {
+            ...props,
+            inputRef: ref,
+            name,
+            value: props.isMulti
+              ? props.options.filter((o) => value?.includes(o.value))
+              : props.options.find((o) => o.value === value),
+            onChange: props.isMulti
+              ? (value) => onChange(value.map((i) => i.value))
+              : (value) => onChange(value?.value),
+            styles: { ...selectColourStyles, ...(props.styles || {}) }
+          };
+          const selectAllProps = selectAllOptionFeatureDecorator(composedProps);
+          return <ReactSelect {...composedProps} {...selectAllProps} />;
+        }}
+      />
+    );
+  }
+  const composedProps = {
+    ...props,
+    styles: { ...selectColourStyles, ...(styles || {}) }
+  };
+  const selectAllProps = selectAllOptionFeatureDecorator(composedProps);
+
+  return <ReactSelect {...composedProps} {...selectAllProps} />;
 };
 
 Select.propTypes = {
@@ -179,9 +194,11 @@ Select.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string
   }),
-  // eslint-disable-next-line react/forbid-prop-types,react/require-default-props
-  control: PropTypes.any.isRequired,
-  name: PropTypes.string.isRequired
+  control: PropTypes.shape({}),
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  value: PropTypes.any
 };
 
 Select.defaultProps = {
@@ -190,7 +207,9 @@ Select.defaultProps = {
     value: "*"
   },
   allowSelectAll: false,
-  onChange: () => {}
+  onChange: () => {},
+  control: undefined,
+  value: undefined
 };
 
 export { components };

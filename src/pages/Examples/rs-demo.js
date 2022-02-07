@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiCheck } from "react-icons/hi";
 import { useForm } from "react-hook-form";
 import { components, Select } from "../../components/Select";
@@ -26,6 +26,7 @@ const Option = (props) => {
 };
 
 export function RsDemoPage() {
+  const [selected, setSelected] = useState([]);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       asd: []
@@ -38,6 +39,7 @@ export function RsDemoPage() {
       <div className="">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Select
+            className="mb-4"
             name="asd"
             control={control}
             options={options}
@@ -45,6 +47,17 @@ export function RsDemoPage() {
             allowSelectAll
             hideSelectedOptions={false}
             components={{ Option }}
+          />
+          <Select
+            className="mb-4"
+            name="asd2"
+            options={options}
+            value={selected}
+            isMulti
+            allowSelectAll
+            hideSelectedOptions={false}
+            components={{ Option }}
+            onChange={setSelected}
           />
         </form>
       </div>
