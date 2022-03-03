@@ -28,14 +28,14 @@ export const TopologyView = ({
       </div>
       <div
         className="grid gap-4"
-        style={{ gridTemplateColumns: "repeat(2, 384px)" }}
+        style={{ gridTemplateColumns: "repeat(2, 1fr)" }}
       >
         <div>
           <TopologyColumn
             title="zone 1"
             cards={topology.map((item, index) => (
               <TopologyCard
-                size="medium"
+                size="small"
                 key={item.id}
                 topology={item}
                 selectionMode={selectionMode}

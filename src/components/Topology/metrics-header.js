@@ -5,10 +5,8 @@ import { FormatProperty } from "./property";
 
 export const MetricsHeader = ({ items }) => (
   <div
-    className={clsx(
-      "grid rounded-b-8px divide-x flex-1",
-      `grid-cols-${items.length}`
-    )}
+    className={clsx("grid rounded-b-8px divide-x flex-1")}
+    style={{ gridTemplateColumns: `repeat(${items.length}, 1fr)` }}
   >
     {items.map((item) => (
       <div
@@ -16,7 +14,12 @@ export const MetricsHeader = ({ items }) => (
         className="text-gray-800 px-2 align-middle text-center flex flex-col"
       >
         <h6 className="text-gray-color text-xs mb-0.5">{item.name}</h6>
-        <span className={clsx("font-bold text-xs leading-1.21rel", `text-${item.color}-500`)}>
+        <span
+          className={clsx(
+            "font-bold text-xs leading-1.21rel",
+            `text-${item.color}-500`
+          )}
+        >
           {" "}
           <FormatProperty property={item} short />
         </span>
