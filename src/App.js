@@ -70,7 +70,6 @@ const navigation = [
 ];
 
 const examplesArr = [
-  { path: "rs", component: <RsDemoPage /> },
   { path: "dropdown", component: <DropdownDemoPage /> },
   { path: "topology", component: <ExamplesTopologyPage url="/canary/api" /> },
   {
@@ -78,7 +77,8 @@ const examplesArr = [
     component: <TopologySelectorModalPage url="/canary/api" />
   },
   { path: "modal", component: <ModalPage /> },
-  { path: "topology-dropdown", component: <TypologyDropdownDemo /> }
+  { path: "topology-dropdown", component: <TypologyDropdownDemo /> },
+  { path: "rs-demo-page", component: <RsDemoPage /> }
 ];
 
 export function Placeholder({ text }) {

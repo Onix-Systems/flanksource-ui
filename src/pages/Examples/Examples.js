@@ -4,13 +4,15 @@ import { SearchLayout } from "../../components/Layout";
 export const Examples = () => <Outlet />;
 
 export const ExamplesIndex = ({ examples }) => (
-  <SearchLayout>
-    <div>Choose example</div>
+  <SearchLayout title="Example page">
+    <div className="mb-4 font-semibold text-lg">Choose example</div>
     <div>
       {examples.map((el) => (
-        <div key={el.path}>
-          <Link to={el.path}>{el.path}</Link>
-        </div>
+        <Link to={el.path} key={el.path}>
+          <div className="p-2 my-1 bg-blue-200 hover:bg-blue-300 cursor-pointer">
+            {el.path}
+          </div>
+        </Link>
       ))}
     </div>
   </SearchLayout>
