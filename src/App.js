@@ -27,6 +27,7 @@ import { RsDemoPage } from "./pages/Examples/rs-demo";
 import { TopologyPage as ExamplesTopologyPage } from "./pages/Examples/Topology/topology-page";
 import { TopologySelectorModalPage } from "./pages/Examples/TopologySelectorModalPage/TopologySelectorModalPage";
 import { HealthPage } from "./pages/health";
+import { Examples, ExamplesIndex } from "./pages/Examples/Examples";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -68,6 +69,18 @@ const navigation = [
   }
 ];
 
+const examplesArr = [
+  { path: "rs", component: <RsDemoPage /> },
+  { path: "dropdown", component: <DropdownDemoPage /> },
+  { path: "topology", component: <ExamplesTopologyPage url="/canary/api" /> },
+  {
+    path: "topology-selector",
+    component: <TopologySelectorModalPage url="/canary/api" />
+  },
+  { path: "modal", component: <ModalPage /> },
+  { path: "topology-dropdown", component: <TypologyDropdownDemo /> }
+];
+
 export function Placeholder({ text }) {
   return (
     <div className="py-4">
@@ -94,61 +107,33 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContext.Provider value={user}>
-        <Routes path="/" element={sidebar}>
-          <Route path="" element={<Navigate to="/topology" />} />
-          <Route path="incidents" element={sidebar}>
-            <Route path=":id" element={<IncidentDetailsPage />} />
-            <Route path="create" element={<IncidentCreatePage />} />
-            <Route index element={<IncidentListPage />} />
-          </Route>
-          <Route path="health" element={sidebar}>
-            <Route index element={<HealthPage url="/canary/api" />} />
-          </Route>
-
-          <Route path="topology" element={sidebar}>
-            <Route path=":id" element={<TopologyPage url="/canary/api" />} />
-            <Route index element={<TopologyPage url="/canary/api" />} />
-          </Route>
-
-          <Route path="examples" element={sidebar}>
-            <Route path="rs" element={<RsDemoPage />} />
-            <Route path="dropdown" element={<DropdownDemoPage />} />
+        <Routes>
+          <Route path="/" element={sidebar}>
+            <Route index element={<Navigate to="/topology" />} />
+            <Route path="incidents" element={<IncidentListPage />} />
+            <Route path="incidents/:id" element={<IncidentDetailsPage />} />
+            <Route path="incidents/create" element={<IncidentCreatePage />} />
+            <Route path="health" element={<HealthPage url="/canary/api" />} />
             <Route
               path="topology"
-              element={<ExamplesTopologyPage url="/canary/api" />}
+              element={<TopologyPage url="/canary/api" />}
             />
             <Route
-              path="topology-selector"
-              element={<TopologySelectorModalPage url="/canary/api" />}
+              path="topology/:id"
+              element={<TopologyPage url="/canary/api" />}
             />
-            <Route path="modal" element={<ModalPage />} />
-            <Route
-              path="topology-dropdown"
-              element={<TypologyDropdownDemo />}
-            />
-          </Route>
-
-          <Route path="logs" element={sidebar}>
-            <Route index element={<LogsPage />} />
-          </Route>
-
-          <Route path="config" element={sidebar}>
-            <Route index element={<ConfigListPage />} />
-            <Route path=":id" element={<ConfigDetailsPage />} />
-          </Route>
-
-          <Route path="timeline" element={sidebar}>
-            <Route index element={<TimelinePage />} />
-          </Route>
-
-          <Route path="metrics" element={sidebar}>
-            <Route index element={<Placeholder text="metrics" />} />
-          </Route>
-          <Route path="layout">
-            <Route index element={sidebar} />
-          </Route>
-          <Route path="traces" element={sidebar}>
-            <Route index element={<TraceView />} />
+            <Route path="logs" element={<LogsPage />} />
+            <Route path="config" element={<ConfigListPage />} />
+            <Route path="config/:id" element={<ConfigDetailsPage />} />
+            <Route path="timeline" element={<TimelinePage />} />
+            <Route path="metrics" element={<Placeholder text="metrics" />} />
+            <Route path="traces" element={<TraceView />} />
+            <Route path="examples" element={<Examples />}>
+              <Route index element={<ExamplesIndex examples={examplesArr} />} />
+              {examplesArr.map((el) => (
+                <Route path={el.path} element={el.component} key={el.path} />
+              ))}
+            </Route>
           </Route>
         </Routes>
       </AuthContext.Provider>
