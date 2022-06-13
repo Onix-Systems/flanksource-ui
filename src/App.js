@@ -22,6 +22,7 @@ import {
 } from "./pages";
 import { DropdownDemoPage } from "./pages/Examples/dropdown-demo";
 import { ModalPage } from "./pages/Examples/Modal/modal-page";
+import { TimeRangePickerDemo } from "./pages/Examples/TimeRangePickerDemo";
 import { TypologyDropdownDemo } from "./pages/Examples/topology-dropdown";
 import { RsDemoPage } from "./pages/Examples/rs-demo";
 import { TopologyPage as ExamplesTopologyPage } from "./pages/Examples/Topology/topology-page";
@@ -113,6 +114,7 @@ export function App() {
           <Route path="examples" element={sidebar}>
             <Route path="rs" element={<RsDemoPage />} />
             <Route path="dropdown" element={<DropdownDemoPage />} />
+            <Route path="timerangepicker" element={<TimeRangePickerDemo />} />
             <Route
               path="topology"
               element={<ExamplesTopologyPage url="/canary/api" />}
